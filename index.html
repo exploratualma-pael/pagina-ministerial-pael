@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ministerio PAEL · Pastoreados por ÉL · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --royal:       #1A3EA0;
+    --royal-dark:  #102880;
+    --royal-deep:  #0B1D5C;
+    --royal-mid:   #1E4BB8;
+    --royal-light: #2A5FD4;
+    --gold:        #F5C842;
+    --gold-bright: #FFD95A;
+    --gold-dim:    #B8922A;
+    --gold-muted:  #8A6B1E;
+    --cream:       #EFE0B8;
+    --cream-light: #FAF3E0;
+    --cream-dim:   #C8B88A;
+    --green:       #4A7A3A;
+    --green-light: #5E9A4A;
+    --white:       #FFFFFF;
+    --w80:    rgba(255,255,255,0.8);
+    --w40:    rgba(255,255,255,0.4);
+    --w15:    rgba(255,255,255,0.15);
+    --w08:    rgba(255,255,255,0.08);
+    --g25:    rgba(245,200,66,0.25);
+    --g12:    rgba(245,200,66,0.12);
+    --g06:    rgba(245,200,66,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--royal-deep);
+    color: var(--cream-light);
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(245,200,66,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(26,62,160,0.4) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F5C842' fill-opacity='0.022'%3E%3Cpath d='M40 10 L46 26 L63 26 L50 36 L55 52 L40 42 L25 52 L30 36 L17 26 L34 26Z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.8rem 3rem;
+    background: rgba(11,29,92,0.96);
+    border-bottom: 1px solid var(--g25);
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+  .nav-logo img {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid var(--gold); object-fit: cover;
+  }
+  .nav-logo-text { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 900; color: var(--gold); letter-spacing: 0.12em; line-height: 1.1; }
+  .nav-logo-sub { font-size: 0.52rem; color: var(--cream-dim); letter-spacing: 0.2em; text-transform: uppercase; }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a { text-decoration: none; color: var(--w80); font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; }
+  nav ul a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+    background:
+      radial-gradient(ellipse at 50% 5%, rgba(42,95,212,0.55) 0%, transparent 60%),
+      linear-gradient(175deg, var(--royal-mid) 0%, var(--royal-deep) 60%, #060F38 100%);
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 900px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(245,200,66,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-ring {
+    position: absolute; width: 580px; height: 580px;
+    border: 1px solid rgba(245,200,66,0.09); border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    animation: spin 70s linear infinite;
+  }
+  .hero-ring-2 {
+    position: absolute; width: 440px; height: 440px;
+    border: 1px dashed rgba(245,200,66,0.07); border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    animation: spin 45s linear infinite reverse;
+  }
+  @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+
+  .hero-logo-wrap { position: relative; z-index: 2; margin-bottom: 1.8rem; animation: fadeUp 1s ease both; }
+  .hero-logo-img {
+    width: 150px; height: 150px; border-radius: 50%;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 50px rgba(245,200,66,0.35), 0 0 100px rgba(245,200,66,0.1);
+    object-fit: cover; display: block; margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-block; font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--g25); padding: 0.35rem 1.2rem;
+    margin-bottom: 1.2rem; background: var(--g06);
+    position: relative; z-index: 2; animation: fadeUp 1s 0.1s ease both;
+  }
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.4rem, 6.5vw, 5rem); font-weight: 900; line-height: 1.1;
+    color: var(--white); position: relative; z-index: 2; animation: fadeUp 1s 0.15s ease both;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold); text-shadow: 0 0 50px rgba(245,200,66,0.5); }
+  .hero-hebrew {
+    font-size: 2.4rem; color: var(--gold); margin: 0.6rem 0; font-family: serif;
+    filter: drop-shadow(0 0 12px rgba(245,200,66,0.4));
+    position: relative; z-index: 2; animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-casa {
+    font-family: 'Cinzel', serif; font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--cream); letter-spacing: 0.18em; font-weight: 400; margin-bottom: 0.8rem;
+    position: relative; z-index: 2; animation: fadeUp 1s 0.25s ease both;
+  }
+  .hero-sub {
+    font-size: 0.93rem; color: var(--w80); max-width: 540px; line-height: 1.8; font-weight: 300;
+    margin: 0.5rem auto 0; position: relative; z-index: 2; animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-psalm {
+    margin-top: 1.2rem; font-family: 'Crimson Text', serif; font-size: 0.95rem;
+    color: var(--gold-dim); font-style: italic;
+    position: relative; z-index: 2; animation: fadeUp 1s 0.35s ease both;
+  }
+  .hero-cta {
+    margin-top: 2.2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 2; animation: fadeUp 1s 0.45s ease both;
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: var(--royal-deep); font-family: 'Cinzel', serif; font-size: 0.73rem;
+    font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.9rem 2.2rem; border: none; cursor: pointer; text-decoration: none;
+    transition: all 0.3s; display: inline-block;
+    box-shadow: 0 4px 22px rgba(245,200,66,0.3);
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,200,66,0.5); }
+  .btn-outline {
+    border: 1.5px solid rgba(245,200,66,0.55); color: var(--gold);
+    font-family: 'Cinzel', serif; font-size: 0.73rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase; padding: 0.9rem 2.2rem;
+    text-decoration: none; transition: all 0.3s; background: transparent; display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(245,200,66,0.1); border-color: var(--gold); }
+
+  .scroll-hint {
+    position: absolute; bottom: 1.8rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    color: rgba(245,200,66,0.45); font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; z-index: 2;
+  }
+  .scroll-hint::after {
+    content: ''; width: 1px; height: 42px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    animation: pulse-ln 2s ease-in-out infinite;
+  }
+  @keyframes pulse-ln { 0%,100%{opacity:.45;} 50%{opacity:.9;} }
+
+  /* ─── SHARED ─── */
+  section { position: relative; z-index: 1; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
+  .section-label { font-size: 0.6rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: block; }
+  .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.5rem, 3.5vw, 2.6rem); font-weight: 600; color: var(--white); line-height: 1.2; margin-bottom: 1.2rem; }
+  .gold-bar { width: 55px; height: 3px; background: linear-gradient(to right, var(--gold), transparent); margin-bottom: 2rem; }
+  .section-body { color: var(--w80); line-height: 1.85; font-weight: 300; font-size: 0.93rem; max-width: 620px; }
+
+  /* ─── VISION ─── */
+  #vision {
+    background: linear-gradient(180deg, var(--royal-deep) 0%, var(--royal-dark) 100%);
+    border-top: 1px solid var(--g12);
+  }
+  .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .vision-detail { color: var(--w80); line-height: 1.85; font-weight: 300; font-size: 0.93rem; }
+  .vision-detail p { margin-bottom: 1.2rem; }
+  .vision-detail strong { color: var(--gold); font-weight: 700; }
+  .vision-chip {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--g06); border: 1px solid var(--g25);
+    padding: 0.38rem 1rem; margin-bottom: 1.8rem;
+  }
+  .vision-chip span { font-family: 'Cinzel', serif; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; }
+  .vision-quote {
+    background: linear-gradient(135deg, rgba(26,62,160,0.55), rgba(11,29,92,0.8));
+    border: 1px solid var(--g25); padding: 3rem 2.5rem; position: relative;
+  }
+  .vision-quote::before {
+    content: '"'; font-family: 'Crimson Text', serif; font-size: 8rem;
+    color: rgba(245,200,66,0.07); position: absolute; top: -1rem; left: 1rem; line-height: 1; pointer-events: none;
+  }
+  .vision-quote blockquote { font-family: 'Crimson Text', serif; font-size: 1.3rem; color: var(--cream-light); line-height: 1.65; font-style: italic; }
+  .vision-quote cite { display: block; margin-top: 1.5rem; font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.15em; font-style: normal; }
+
+  /* ─── CAMPAMENTO ─── */
+  #tabernacle {
+    background: linear-gradient(180deg, var(--royal-dark) 0%, var(--royal-mid) 50%, var(--royal-dark) 100%);
+    border-top: 1px solid var(--g12); border-bottom: 1px solid var(--g12);
+  }
+  .tab-header { text-align: center; margin-bottom: 4rem; }
+  .tab-header .gold-bar { margin: 0 auto 2rem; }
+  .tab-header .section-body { margin: 0 auto; text-align: center; }
+
+  .camp-map {
+    display: grid;
+    grid-template-areas: ". norte ." "oeste centro este" ". sur .";
+    grid-template-columns: 1fr 1.1fr 1fr;
+    grid-template-rows: 1fr 1.15fr 1fr;
+    gap: 0.7rem; max-width: 660px; margin: 0 auto; aspect-ratio: 1;
+  }
+  .camp-card {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 1rem 0.7rem;
+    background: rgba(11,29,92,0.65); border: 1px solid var(--g12);
+    transition: all 0.35s; cursor: default; position: relative; overflow: hidden;
+  }
+  .camp-card::after { content: ''; position: absolute; inset: 0; background: rgba(245,200,66,0.04); opacity: 0; transition: opacity 0.35s; }
+  .camp-card:hover { border-color: rgba(245,200,66,0.45); transform: scale(1.04); }
+  .camp-card:hover::after { opacity: 1; }
+  .camp-card.norte { grid-area: norte; }
+  .camp-card.sur   { grid-area: sur; }
+  .camp-card.este  { grid-area: este; }
+  .camp-card.oeste { grid-area: oeste; }
+  .camp-card.centro {
+    grid-area: centro;
+    background: linear-gradient(135deg, rgba(26,62,160,0.88), rgba(11,29,92,0.95));
+    border: 2px solid rgba(245,200,66,0.5);
+    box-shadow: 0 0 40px rgba(245,200,66,0.1), inset 0 0 30px rgba(245,200,66,0.04);
+  }
+  .camp-dir-label { font-size: 0.48rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245,200,66,0.55); margin-bottom: 0.35rem; }
+  .camp-icon { font-size: 1.7rem; margin-bottom: 0.35rem; line-height: 1; }
+  .camp-name { font-family: 'Cinzel', serif; font-size: 0.68rem; font-weight: 700; color: var(--gold); margin-bottom: 0.2rem; letter-spacing: 0.06em; }
+  .camp-sub { font-size: 0.55rem; color: var(--w80); line-height: 1.4; }
+  .camp-tribes-mini { font-size: 0.5rem; color: rgba(245,200,66,0.45); margin-top: 0.28rem; }
+  .centro-scroll { font-size: 1.9rem; margin-bottom: 0.28rem; filter: drop-shadow(0 0 12px rgba(245,200,66,0.6)); }
+  .centro-hebrew { font-size: 1.25rem; color: var(--gold); filter: drop-shadow(0 0 8px rgba(245,200,66,0.5)); font-family: serif; margin-bottom: 0.2rem; }
+  .centro-label { font-family: 'Cinzel', serif; font-size: 0.55rem; color: var(--cream-dim); letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* ─── TRIBUS ─── */
+  #tribus { background: linear-gradient(180deg, var(--royal-dark) 0%, var(--royal-deep) 100%); }
+  .tribes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .tribe-card {
+    background: linear-gradient(145deg, rgba(26,62,160,0.38), rgba(11,29,92,0.55));
+    border: 1px solid var(--g12); padding: 2rem 1.6rem;
+    position: relative; overflow: hidden; transition: all 0.4s;
+  }
+  .tribe-top-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--gold), var(--green));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+  }
+  .tribe-card:hover { border-color: rgba(245,200,66,0.3); transform: translateY(-5px); }
+  .tribe-card:hover .tribe-top-bar { transform: scaleX(1); }
+  .tribe-dir-pill {
+    display: inline-block; font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--royal-deep); background: var(--gold); padding: 0.2rem 0.7rem; margin-bottom: 1rem; font-weight: 700;
+  }
+  .tribe-icon { font-size: 2.2rem; margin-bottom: 0.6rem; display: block; }
+  .tribe-name { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+  .tribe-tagline { font-family: 'Crimson Text', serif; font-size: 0.85rem; color: var(--gold); margin-bottom: 1rem; font-style: italic; }
+  .tribe-desc { font-size: 0.84rem; color: var(--w80); line-height: 1.75; font-weight: 300; }
+  .tribe-desc strong { color: var(--gold-bright); font-weight: 700; }
+  .tribe-footer { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--g12); font-size: 0.63rem; color: rgba(245,200,66,0.48); }
+
+  /* ─── PRINCIPIO ─── */
+  #principio {
+    background: linear-gradient(135deg, #0A1A54, #102880, #0A1A54);
+    border-top: 1px solid var(--g12); border-bottom: 1px solid var(--g12);
+  }
+  .principle-center { text-align: center; max-width: 820px; margin: 0 auto; }
+  .big-quote { font-family: 'Crimson Text', serif; font-size: clamp(1.3rem, 3.5vw, 2.1rem); color: var(--cream-light); line-height: 1.6; font-style: italic; margin-bottom: 2.5rem; }
+  .big-quote em { color: var(--gold); font-style: normal; }
+  .warn-box {
+    background: var(--g06); border: 1px solid var(--g25); padding: 2rem 2.5rem;
+    text-align: left; max-width: 680px; margin: 0 auto; display: flex; gap: 1.5rem; align-items: flex-start;
+  }
+  .warn-icon { font-size: 1.7rem; flex-shrink: 0; margin-top: 0.2rem; }
+  .warn-text { font-size: 0.88rem; color: var(--w80); line-height: 1.8; }
+  .warn-text strong { color: var(--gold); }
+
+  /* ─── LIDERAZGO ─── */
+  #liderazgo { background: linear-gradient(180deg, var(--royal-deep) 0%, var(--royal-dark) 100%); }
+  .leaders-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1.3rem; margin-top: 3rem; }
+  .leader-card {
+    background: rgba(26,62,160,0.22); border: 1px solid var(--g12);
+    padding: 2rem 1.5rem; text-align: center; transition: all 0.3s;
+  }
+  .leader-card:hover { border-color: rgba(245,200,66,0.38); background: rgba(26,62,160,0.4); transform: translateY(-3px); }
+  .leader-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+  .leader-name { font-family: 'Cinzel', serif; font-size: 0.83rem; font-weight: 700; color: var(--gold); margin-bottom: 0.6rem; letter-spacing: 0.07em; }
+  .leader-desc { font-size: 0.78rem; color: var(--w80); line-height: 1.7; font-weight: 300; }
+
+  /* ─── VALORES ─── */
+  #valores {
+    background: linear-gradient(180deg, var(--royal-dark) 0%, var(--royal-deep) 100%);
+    border-top: 1px solid var(--g12);
+  }
+  .valores-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px,1fr)); gap: 1.2rem; margin-top: 3rem; }
+  .valor-card { padding: 1.6rem 1.2rem; border-left: 3px solid var(--gold-muted); background: rgba(26,62,160,0.18); transition: all 0.3s; }
+  .valor-card:hover { border-color: var(--gold); background: rgba(26,62,160,0.38); }
+  .valor-icon { font-size: 1.45rem; margin-bottom: 0.55rem; }
+  .valor-label { font-family: 'Cinzel', serif; font-size: 0.8rem; font-weight: 600; color: var(--gold); margin-bottom: 0.4rem; }
+  .valor-desc { font-size: 0.76rem; color: var(--w80); line-height: 1.65; font-weight: 300; }
+
+  .psalm-banner {
+    background: linear-gradient(135deg, rgba(26,62,160,0.55), rgba(74,122,58,0.25));
+    border: 1px solid var(--g25); text-align: center;
+    padding: 3rem 2rem; margin: 4rem auto 0; max-width: 680px;
+  }
+  .psalm-banner p { font-family: 'Crimson Text', serif; font-size: 1.15rem; color: var(--cream-light); line-height: 1.7; font-style: italic; margin-bottom: 0.8rem; }
+  .psalm-banner cite { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.15em; font-style: normal; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--royal-deep);
+    border-top: 2px solid var(--g25);
+    text-align: center; padding: 5rem 2rem 3rem;
+  }
+  .footer-logo-img {
+    width: 88px; height: 88px; border-radius: 50%; border: 2px solid var(--gold);
+    box-shadow: 0 0 30px rgba(245,200,66,0.25); margin: 0 auto 1.5rem; display: block; object-fit: cover;
+  }
+  .footer-title { font-family: 'Cinzel', serif; font-size: 1.55rem; color: var(--white); font-weight: 900; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .footer-title span { color: var(--gold); }
+  .footer-hebrew { font-size: 1.4rem; color: var(--gold); margin-bottom: 0.3rem; font-family: serif; }
+  .footer-casa { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--cream-dim); letter-spacing: 0.15em; margin-bottom: 2rem; }
+  .footer-divider { width: 55px; height: 1px; background: var(--g25); margin: 2rem auto; }
+  .footer-verse { font-family: 'Crimson Text', serif; font-style: italic; font-size: 0.93rem; color: var(--w80); max-width: 470px; margin: 0 auto 1.2rem; line-height: 1.7; }
+  .footer-ref { font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--gold-dim); letter-spacing: 0.22em; margin-bottom: 2rem; }
+  .footer-copy { font-size: 0.66rem; color: rgba(255,255,255,0.28); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0.8rem 1.2rem; }
+    nav ul { display: none; }
+    .vision-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .camp-map {
+      grid-template-areas: "norte" "este" "centro" "oeste" "sur";
+      grid-template-columns: 1fr; grid-template-rows: auto;
+      max-width: 320px; aspect-ratio: auto;
+    }
+    .warn-box { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="/mnt/user-data/uploads/logoPAEL_2026.jpeg" alt="Logo PAEL">
+    <div>
+      <div class="nav-logo-text">PAEL</div>
+      <div class="nav-logo-sub">Pastoreados por ÉL</div>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#vision">Visión</a></li>
+    <li><a href="#tabernacle">Campamento</a></li>
+    <li><a href="#tribus">Tribus</a></li>
+    <li><a href="#liderazgo">Liderazgo</a></li>
+    <li><a href="#valores">Valores</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring-2"></div>
+
+  <div class="hero-logo-wrap">
+    <img class="hero-logo-img" src="/mnt/user-data/uploads/logoPAEL_2026.jpeg" alt="Logo Ministerio PAEL">
+  </div>
+
+  <div class="hero-badge">Ministerio · 2026</div>
+  <h1>Pastoreados<br>por <em>ÉL</em></h1>
+  <div class="hero-hebrew">אבר</div>
+  <div class="hero-casa">Casa De Israel</div>
+  <p class="hero-sub">Un gobierno teocéntrico para la congregación de hoy,<br>organizado alrededor del Tabernáculo de la Presencia</p>
+  <p class="hero-psalm">Salmos 23 · Números 2</p>
+  <div class="hero-cta">
+    <a href="#tabernacle" class="btn-gold">El Campamento de Israel</a>
+    <a href="#tribus" class="btn-outline">Las Cuatro Tribus</a>
+  </div>
+  <div class="scroll-hint">Descubrir</div>
+</section>
+
+<!-- VISIÓN -->
+<section id="vision">
+  <div class="section-inner">
+    <div class="vision-grid">
+      <div>
+        <div class="vision-chip"><span>📜 Números 2 · Salmos 23</span></div>
+        <span class="section-label">Nuestra Identidad</span>
+        <h2 class="section-title">El Centro es la<br>Presencia de Dios</h2>
+        <div class="gold-bar"></div>
+        <div class="vision-detail">
+          <p>El <strong>Ministerio Pastoreados por ÉL (PAEL)</strong> estructura su vida congregacional siguiendo el modelo del campamento de Israel descrito en Números 2. No como arqueología, sino como arquitectura viva del Espíritu.</p>
+          <p>El centro no era Judá ni Leví — era la <strong>Shejiná</strong>, la Presencia de Dios. El Mishkán era el corazón de la nación. Todo lo demás orbitaba alrededor de Él.</p>
+          <p>Una congregación saludable organiza sus ministerios priorizando la comunión con el Padre. Si el centro se desplaza hacia una personalidad humana, la estructura colapsa.</p>
+        </div>
+      </div>
+      <div class="vision-quote">
+        <blockquote>
+          "La Torá nos llama a la integridad de los cuatro rostros. Sin el Ruaj HaKodesh en el centro, lo demás es simplemente una empresa."
+          <cite>— Ministerio PAEL · Estudio de Números 2 · 2026</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAMENTO -->
+<section id="tabernacle">
+  <div class="section-inner">
+    <div class="tab-header">
+      <span class="section-label">El Campamento de Israel</span>
+      <h2 class="section-title">Mapa Espiritual de la Congregación</h2>
+      <div class="gold-bar"></div>
+      <p class="section-body">Cada miembro del liderazgo debe saber en qué lado del Tabernáculo sirve. Cuatro estandartes, cuatro rostros, un solo centro: el Ruaj HaKodesh.</p>
+    </div>
+    <div class="camp-map">
+      <div class="camp-card norte">
+        <div class="camp-dir-label">⬆ Norte</div>
+        <div class="camp-icon">🦅</div>
+        <div class="camp-name">Estandarte de Dan</div>
+        <div class="camp-sub">Vigilancia · Justicia · Provisión</div>
+        <div class="camp-tribes-mini">Dan · Aser · Neftalí</div>
+      </div>
+      <div class="camp-card este">
+        <div class="camp-dir-label">🌅 Este</div>
+        <div class="camp-icon">🦁</div>
+        <div class="camp-name">Estandarte de Judá</div>
+        <div class="camp-sub">Alabanza · Autoridad · Estudio</div>
+        <div class="camp-tribes-mini">Judá · Isacar · Zabulón</div>
+      </div>
+      <div class="camp-card centro">
+        <div class="centro-scroll">📜</div>
+        <div class="centro-hebrew">אבר</div>
+        <div class="centro-label">Ruaj HaKodesh</div>
+      </div>
+      <div class="camp-card oeste">
+        <div class="camp-dir-label">🌄 Oeste</div>
+        <div class="camp-icon">🐂</div>
+        <div class="camp-name">Estandarte de Efraín</div>
+        <div class="camp-sub">Servicio · Sacrificio · Multiplicación</div>
+        <div class="camp-tribes-mini">Efraín · Manasés · Benjamín</div>
+      </div>
+      <div class="camp-card sur">
+        <div class="camp-dir-label">⬇ Sur</div>
+        <div class="camp-icon">👤</div>
+        <div class="camp-name">Estandarte de Rubén</div>
+        <div class="camp-sub">Paternidad · Restauración · Cuidado</div>
+        <div class="camp-tribes-mini">Rubén · Simeón · Gad</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIBUS -->
+<section id="tribus">
+  <div class="section-inner">
+    <span class="section-label">Los Cuatro Rostros</span>
+    <h2 class="section-title">Las Tribus del Campamento</h2>
+    <div class="gold-bar"></div>
+    <p class="section-body">Cada estandarte representa una dimensión del carácter de Dios expresada en la congregación. Ninguna es superior; todas son necesarias.</p>
+    <div class="tribes-grid">
+      <div class="tribe-card">
+        <div class="tribe-top-bar"></div>
+        <div class="tribe-dir-pill">🌅 Este · Vanguardia</div>
+        <span class="tribe-icon">🦁</span>
+        <div class="tribe-name">Judá</div>
+        <div class="tribe-tagline">"El Rostro del León" · Alabanza y Autoridad</div>
+        <p class="tribe-desc"><strong>Yehudah</strong> — de Yadah: "extender las manos, alabar." Alaba antes de pedir, agradece antes de ver el milagro. Judá marchaba primero (Nm 10:14): rompe el hielo espiritual, inicia proyectos, mantiene la fe alta en los desiertos. El León de Judá ya venció.</p>
+        <div class="tribe-footer">Compañeros: Isacar (sabiduría de tiempos) · Zabulón (recursos y misiones)</div>
+      </div>
+      <div class="tribe-card">
+        <div class="tribe-top-bar"></div>
+        <div class="tribe-dir-pill">⬇ Sur · Pastoral</div>
+        <span class="tribe-icon">👤</span>
+        <div class="tribe-name">Rubén</div>
+        <div class="tribe-tagline">"El Rostro de Hombre" · Restauración y Cuidado</div>
+        <p class="tribe-desc"><strong>"¡He aquí un hijo!"</strong> El ministerio pastoral. Sana las ovejas heridas. Una congregación con 'Rubén' sabe perdonar sin comprometer la santidad. Nadie queda solo en el desierto.</p>
+        <div class="tribe-footer">Compañeros: Simeón (escucha) · Gad (grupos y células de cuidado)</div>
+      </div>
+      <div class="tribe-card">
+        <div class="tribe-top-bar"></div>
+        <div class="tribe-dir-pill">🌄 Oeste · Servicio</div>
+        <span class="tribe-icon">🐂</span>
+        <div class="tribe-name">Efraín</div>
+        <div class="tribe-tagline">"El Rostro de Buey" · Servicio y Multiplicación</div>
+        <p class="tribe-desc"><strong>"Fruto doble."</strong> El buey ara la tierra; no busca la gloria, busca el surco. Los motores de la comunidad. Manasés sana las heridas del pasado; Benjamín protege la nueva generación. (Romanos 12:1)</p>
+        <div class="tribe-footer">Compañeros: Manasés (sanidad interior) · Benjamín (jóvenes y niños)</div>
+      </div>
+      <div class="tribe-card">
+        <div class="tribe-top-bar"></div>
+        <div class="tribe-dir-pill">⬆ Norte · Vigilancia</div>
+        <span class="tribe-icon">🦅</span>
+        <div class="tribe-name">Dan</div>
+        <div class="tribe-tagline">"El Rostro de Águila" · Juicio y Provisión Sobrenatural</div>
+        <p class="tribe-desc"><strong>"Juez."</strong> El águila ve el peligro desde lejos. Intercesión profética y vigilancia doctrinal. Detecta espíritus extraños y enseñanzas falsas. Dan era el recolector: nadie quedaba atrás.</p>
+        <div class="tribe-footer">Compañeros: Aser (excelencia y generosidad) · Neftalí (libertad y comunicación)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPIO -->
+<section id="principio">
+  <div class="section-inner">
+    <div class="principle-center">
+      <span class="section-label">Principio Fundamental · Números 1:53</span>
+      <h2 class="section-title">Dios en el Centro de Todo</h2>
+      <div class="gold-bar" style="margin:0 auto 2rem;"></div>
+      <p class="big-quote">"Si el centro se desplaza hacia una <em>personalidad humana</em>,<br>la estructura colapsa."</p>
+      <div class="warn-box">
+        <div class="warn-icon">⚠</div>
+        <div class="warn-text">
+          <strong>Números 1:53 — Ruaj HaKodesh en el centro de todo.</strong><br><br>
+          El Lugar Santísimo no era una oficina pastoral — era la Presencia. Una congregación saludable organiza todos sus ministerios priorizando la comunión con el Padre sobre los programas, las personalidades y las tradiciones religiosas.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIDERAZGO -->
+<section id="liderazgo">
+  <div class="section-inner">
+    <span class="section-label">Círculos de Responsabilidad</span>
+    <h2 class="section-title">Levitas y Sacerdotes</h2>
+    <div class="gold-bar"></div>
+    <p class="section-body">Cada familia levítica tenía un rol específico alrededor del Tabernáculo. Así también los ministerios de servicio en la congregación de hoy.</p>
+    <div class="leaders-grid">
+      <div class="leader-card">
+        <div class="leader-icon">📜</div>
+        <div class="leader-name">Coatitas · Sur</div>
+        <p class="leader-desc">Guardianes de la sana doctrina y la enseñanza profunda de la Torá. El conocimiento revelado como alimento del pueblo.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-icon">🛡</div>
+        <div class="leader-name">Gersonitas · Oeste</div>
+        <p class="leader-desc">Ministerio de intercesión, coberturas y protección espiritual de toda la congregación.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-icon">⚖</div>
+        <div class="leader-name">Meraritas · Norte</div>
+        <p class="leader-desc">Administración, logística y orden legal y financiero. La estructura que sostiene la misión.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-icon">🌅</div>
+        <div class="leader-name">Moisés y Aarón · Este</div>
+        <p class="leader-desc">Liderazgo visionario y sacerdotal. Guía al pueblo hacia la redención. Profético y apostólico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section id="valores">
+  <div class="section-inner">
+    <span class="section-label">Integridad de los Cuatro Rostros</span>
+    <h2 class="section-title">Lo que nos define</h2>
+    <div class="gold-bar"></div>
+    <div class="valores-grid">
+      <div class="valor-card">
+        <div class="valor-icon">📜</div>
+        <div class="valor-label">Centro: Ruaj HaKodesh</div>
+        <div class="valor-desc">Sin esto, lo demás es simplemente una empresa. La Presencia primero, siempre.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-icon">🦁</div>
+        <div class="valor-label">Este — Alabanza y Autoridad</div>
+        <div class="valor-desc">El frente del campamento. Alabamos antes de pedir, avanzamos en fe como Judá.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-icon">👤</div>
+        <div class="valor-label">Sur — Pastoreo y Restauración</div>
+        <div class="valor-desc">Mientras Judá grita guerra, Rubén sana a las ovejas heridas. El cuidado del alma.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-icon">🐂</div>
+        <div class="valor-label">Oeste — Servicio y Multiplicación</div>
+        <div class="valor-desc">El trabajo constante. El buey ara sin buscar gloria. Romanos 12:1.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-icon">🦅</div>
+        <div class="valor-label">Norte — Vigilancia y Justicia</div>
+        <div class="valor-desc">La retaguardia y protección. El águila ve el peligro desde lejos. Nadie queda atrás.</div>
+      </div>
+    </div>
+
+    <div class="psalm-banner">
+      <p>"Jehová es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar..."</p>
+      <cite>Salmos 23 · El Salmo del Pastor</cite>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img class="footer-logo-img" src="/mnt/user-data/uploads/logoPAEL_2026.jpeg" alt="Logo PAEL">
+  <div class="footer-title">Ministerio <span>PAEL</span></div>
+  <div class="footer-hebrew">אבר</div>
+  <div class="footer-casa">Casa De Israel · 2026</div>
+  <div class="footer-divider"></div>
+  <p class="footer-verse">"Dios estaba en el centro de todo" — Un gobierno teocéntrico para la congregación de hoy</p>
+  <p class="footer-ref">NÚMEROS 2 · SALMOS 23</p>
+  <p class="footer-copy">© 2026 Ministerio Pastoreados por ÉL · Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>
